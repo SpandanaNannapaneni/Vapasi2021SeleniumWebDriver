@@ -1,12 +1,13 @@
 package com.vapasi2021.helpers;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 public class Driver {
     public static WebDriver driver;
@@ -28,14 +29,14 @@ public class Driver {
     }
 
 
-    @Before
+    @BeforeMethod
     public void setDriver() {
         System.setProperty("webdriver.chrome.driver", "/Users/spandana/Downloads/chromedriver");
         driver = new ChromeDriver();
         driver.get("https://spree-vapasi.herokuapp.com");
     }
 
-    @After
+    @AfterMethod
     public void quitDriver() {
         driver.quit();
     }
