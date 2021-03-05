@@ -12,16 +12,22 @@ public class Driver {
     public static WebDriverWait wait;
 
 
-    @BeforeMethod
+    @BeforeClass
     public void setDriver() {
         System.setProperty("webdriver.chrome.driver", "/Users/spandana/Downloads/chromedriver");
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
+
+    }
+
+    @BeforeMethod
+    public void setURL(){
+        driver.manage().deleteAllCookies();
         driver.get("https://spree-vapasi.herokuapp.com");
     }
 
-    @AfterMethod
-    public void quitDriver() {
+    @AfterClass
+    public void tearDown() {
         driver.quit();
     }
 
