@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.IOException;
+
 public class Driver {
     public static WebDriver driver;
     public static WebDriverWait wait;
@@ -21,9 +23,10 @@ public class Driver {
     }
 
     @BeforeMethod
-    public void setURL(){
+    public void setURL() throws IOException {
         driver.manage().deleteAllCookies();
         driver.get("https://spree-vapasi.herokuapp.com");
+        Utils.takeScreenShot(driver);
     }
 
     @AfterClass
