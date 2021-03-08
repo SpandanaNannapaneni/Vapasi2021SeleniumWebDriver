@@ -1,6 +1,7 @@
 package com.vapasi2021.tests;
 
 import com.vapasi2021.helpers.Driver;
+import com.vapasi2021.pages.LoginPage;
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +15,7 @@ public class Tests extends Driver {
 
     public String emailId;
     public String password;
+    LoginPage loginPage;
 
 
     @Test
@@ -32,17 +34,7 @@ public class Tests extends Driver {
         driver.findElement(By.linkText("Ruby on Rails Baseball Jersey")).isDisplayed();
     }
 
-    @Test
-    public void verifyLoginSuccessMessage() {
-        //Arrange
-        emailId = "spandana@thoughtworks.com";
-        password = "spd12345678";
-        //Act
-        login(emailId, password);
-        //Assert
-        String successMessage = driver.findElement(By.cssSelector("div[class='alert alert-success']")).getText();
-        assertEquals(successMessage, "Logged in successfully");
-    }
+
 
     @Test
     public void verifyAddToCart() {
@@ -50,7 +42,7 @@ public class Tests extends Driver {
         emailId = "spandana@thoughtworks.com";
         password = "spd12345678";
         //Act
-        login(emailId, password);
+        loginPage.login(emailId, password);
         driver.findElement(By.cssSelector("div[class='alert alert-success']")).isDisplayed();
         addProductToCart("Ruby on Rails Tote");
         openCart();
@@ -60,17 +52,9 @@ public class Tests extends Driver {
         Assert.assertTrue(driver.findElement(By.cssSelector("img[alt='Ruby on Rails Tote']")).isDisplayed());
     }
 
-    @Test
-    public void verifyLogoutMessage() {
-        emailId = "spandana@thoughtworks.com";
-        password = "spd12345678";
-        login(emailId, password);
-        logout();
-        driver.findElement(By.cssSelector("div[class='alert alert-notice']")).isDisplayed();
-        assertEquals(driver.findElement(By.cssSelector("div[class='alert alert-notice']")).getText(), "Signed out successfully.");
-    }
 
-    private void login(String emailId, String password) {
+
+    public void login(String emailId, String password) {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("link-to-login")));
         driver.findElement(By.id("link-to-login")).click();
         driver.findElement(By.id("spree_user_email")).sendKeys(emailId);

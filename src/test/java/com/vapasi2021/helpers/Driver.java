@@ -13,11 +13,15 @@ public class Driver {
     public static WebDriver driver;
     public static WebDriverWait wait;
 
+//    public static WebDriver getDriver() {
+//        return driver;
+//    }
+
 
     @BeforeClass
     public void setDriver() {
         System.setProperty("webdriver.chrome.driver", "/Users/spandana/Downloads/chromedriver");
-        driver = new ChromeDriver();
+        Driver.driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
 
     }
@@ -26,7 +30,7 @@ public class Driver {
     public void setURL() throws IOException {
         driver.manage().deleteAllCookies();
         driver.get("https://spree-vapasi.herokuapp.com");
-        Utils.takeScreenShot(driver);
+//        Utils.takeScreenShot(driver);
     }
 
     @AfterClass
