@@ -2,6 +2,7 @@ package com.vapasi2021.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -11,6 +12,7 @@ public class LoginPage extends BasePage {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
+
 
     public void login(String emailId, String password) {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("link-to-login")));
